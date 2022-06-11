@@ -160,13 +160,13 @@ export default class SubTopicComponent extends React.Component {
     }
 
     componentDidMount() {
-        console.log('mounting');
+        //console.log('mounting');
 
         this.fetchAllSubTopics();
     }
 
     componentDidUpdate() {
-        console.log('updating');
+        //console.log('updating');
         //console.log(this.state)
 
         this.listComponent.addEventListener('listItemClick', SubTopicComponentEventManager.onListItemClick.bind(this));
@@ -177,7 +177,7 @@ export default class SubTopicComponent extends React.Component {
     }
 
     fetchAllSubTopics() {
-        console.log('fetching...');
+        //console.log('fetching...');
         //TODO: change to original fetch source
         //let subTopics = FakeData.getSubTopic(this.topicId);
 

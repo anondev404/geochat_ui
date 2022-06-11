@@ -99,7 +99,6 @@ class SubTopicDisplayComponent extends React.Component {
     }
 
     get description() {
-        //fake data mapping
         return this.props.locState.description;
     }
 
@@ -136,7 +135,7 @@ function SubTopicDisplay(props) {
     let loc = useLocation();
 
     useEffect(() => {
-        console.log(loc);
+        //console.log(loc);
         //let a, b;
         //[a, b] = searchParams;
         //console.log(searchParams);
@@ -149,7 +148,7 @@ function SubTopicDisplay(props) {
                 searchParams={searchParams}
                 locState={loc.state}
                 title={loc.state.subTopicTitle} />
-            <CommentWindow />
+            <CommentWindow searchParams={searchParams} locState={loc.state} key={new Date().getTime()}  />
         </>
     );
 }

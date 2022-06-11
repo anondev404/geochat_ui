@@ -28,10 +28,11 @@ export default class CommentCard extends React.Component {
     }
 
     getCommentCardCol2() {
+        //{this.getReactionRow()}
         return (
             <div className="col">
                 {this.getCommentWithUsernameRow()}
-                {this.getReactionRow()}
+                
             </div>
         );
     }
