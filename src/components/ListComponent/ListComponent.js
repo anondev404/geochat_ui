@@ -106,7 +106,7 @@ export default class ListComponent extends React.Component {
 
     listComponet() {
         let listComponent = (
-            <div className="list-component" ref={this.props.refSetter}>
+            <div className="list-component" ref={this.props.refSetter} key={new Date().getTime()}>
                 <div className="list p-1">
                     {this.createListItemsComponents()}
                     <div className="2-blank-lines"><br /><br /></div>

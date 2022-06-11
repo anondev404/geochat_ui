@@ -3,14 +3,16 @@ import React from 'react';
 import { createSearchParams } from 'react-router-dom';
 
 import ListComponent from '../../components/ListComponent/ListComponent.js';
+
 import axios from 'axios';
-import serverConfig from './../../server/config/config';
+import produce from 'immer';
 
 
 class TopicComponentEventManager {
     static onListItemClick(event) {
         event.stopPropagation();
         let topicId = event.target.getAttribute('id');
+        console.log(`topic id: ${event.detail.title}`);
         this.props.nav({
             pathname: '/topic/subTopic',
             search: `?${createSearchParams({ topicId: topicId }).toString()}`,
@@ -24,11 +26,21 @@ export default class TopicComponent extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.listComponent = null;
-        this.state = {}
+
+        this.state = {
+            data: [],
+        }
     }
 
     componentDidMount() {
+
+        this.fetchAllTopics();
+    }
+
+    componentDidUpdate() {
+
         this.listComponent.addEventListener('listItemClick', TopicComponentEventManager.onListItemClick.bind(this));
     }
 
@@ -37,45 +49,43 @@ export default class TopicComponent extends React.Component {
     }
 
     fetchAllTopics() {
-        let topics = {
+        /*let topics = {
             allTopics: [
                 {
                     topicId: 'topicItem1',
                     topicTitle: 'Sports'
                 },
             ],
-        };
-        /**
-         * headers: {
-                        mode: 'cors',
-                        credential: 'include'
-                    }
-         */
+        };*/
 
         axios.get(`/fetch/topic`, {
             withCredentials: true
         }).then((res) => {
-            //this.setState(res.data);
 
-            console.log(res);
+            const serverRes = res.data;
 
-            const data = res.data;
+            const data = serverRes.data;
 
-            if (data.isFetched) {
-                console.log(data.data);
-            } else {
-                console.log(data.message);
+            console.log(this.state);
+
+            if (serverRes.isFetched) {
+                if (this.state.data.length === 0) {
+                    this.setState({
+                        data: data
+                    });
+                    console.log(this.state);
+                }
             }
         });
 
-        return topics.allTopics;
+        return this.state.data;
     }
 
     prepareListCompnentPayload(allTopics) {
         let payLoad = {
             paramRep: {
-                id: 'topicId',
-                title: 'topicTitle',
+                id: 'topic_id',
+                title: 'topic_title',
             },
             items: allTopics,
         };
@@ -88,11 +98,13 @@ export default class TopicComponent extends React.Component {
     }
 
     render() {
-        let payLoad = this.prepareListCompnentPayload(this.fetchAllTopics());
+        let payLoad = this.prepareListCompnentPayload(this.state.data);
         return (
             <ListComponent
                 payLoad={payLoad}
-                refSetter={this.listCompRefSetter.bind(this)} />
+                refSetter={this.listCompRefSetter.bind(this)}
+                key={new Date().getTime()}
+            />
         );
     }
 

@@ -1,10 +1,11 @@
+import axios from 'axios';
 import React from 'react';
 
 import { createSearchParams } from 'react-router-dom';
 
 import ListComponent from '../../components/ListComponent/ListComponent.js';
 
-
+/*
 class FakeData {
 
     static topicId1() {
@@ -128,7 +129,7 @@ class FakeData {
             default:
         }
     }
-}
+}*/
 
 class SubTopicComponentEventManager {
     static onListItemClick(event) {
@@ -150,11 +151,21 @@ export default class SubTopicComponent extends React.Component {
 
         this.state = {
             topicId: this.searchParams.get('topicId'),
+            data: [],
         };
+
         this.listComponent = null;
     }
 
     componentDidMount() {
+        console.log('mounting');
+
+        this.fetchAllSubTopics();
+    }
+
+    componentWillUnmount() {
+        console.log('updating');
+
         this.listComponent.addEventListener('listItemClick', SubTopicComponentEventManager.onListItemClick.bind(this));
     }
 
@@ -163,10 +174,36 @@ export default class SubTopicComponent extends React.Component {
     }
 
     fetchAllSubTopics() {
+        console.log('fetching...');
         //TODO: change to original fetch source
-        let subTopics = FakeData.getSubTopic(this.topicId);
+        //let subTopics = FakeData.getSubTopic(this.topicId);
 
-        return subTopics.allSubTopics;
+
+        axios.post(`/fetch/subTopic`, {
+            "topic_id": this.topicId
+        }, {
+            withCredentials: true
+        }).then((res) => {
+
+            const serverRes = res.data;
+
+            const data = serverRes.data;
+
+            console.log(this.state);
+
+            if (serverRes.isFetched) {
+                if (this.state.data.length === 0) {
+                    this.setState({
+                        data: data
+                    });
+
+                    console.log(this.state);
+                }
+            }
+        });
+
+        return this.state.data;
+        //return subTopics.allSubTopics;
     }
 
     get topicId() {
@@ -178,8 +215,8 @@ export default class SubTopicComponent extends React.Component {
             //paramRep says how should list compnent identify id and title of a list item 
             //in a list item list from given json data in items
             paramRep: {
-                id: 'subTopicid',
-                title: 'subTopicTitle',
+                id: 'sub_topic_id',
+                title: 'sub_topic_title',
             },
             items: allSubTopics,
         };
@@ -193,11 +230,13 @@ export default class SubTopicComponent extends React.Component {
     }
 
     render() {
-        let payLoad = this.prepareListCompnentPayload(this.fetchAllSubTopics());
+        let payLoad = this.prepareListCompnentPayload(this.state.data);
         return (
             <ListComponent
                 payLoad={payLoad}
-                refSetter={this.listCompRefSetter.bind(this)} />
+                refSetter={this.listCompRefSetter.bind(this)}
+                key={new Date().getTime()}
+            />
         );
     }
 
