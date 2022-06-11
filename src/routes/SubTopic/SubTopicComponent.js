@@ -135,11 +135,13 @@ class SubTopicComponentEventManager {
     static onListItemClick(event) {
         event.stopPropagation();
         let topicId = this.topicId;
+
         let subTopicId = event.target.getAttribute('id');
+
         this.props.nav({
             pathname: '/topic/subTopic/subTopicDisplay',
             search: `?${createSearchParams({ topicId: topicId, subTopicId: subTopicId }).toString()}`,
-        }, { state: { subTopicTitle: event.detail.title }, });
+        }, { state: { subTopicTitle: event.detail.title, description: event.detail.description } });
     }
 }
 
@@ -163,8 +165,9 @@ export default class SubTopicComponent extends React.Component {
         this.fetchAllSubTopics();
     }
 
-    componentWillUnmount() {
+    componentDidUpdate() {
         console.log('updating');
+        //console.log(this.state)
 
         this.listComponent.addEventListener('listItemClick', SubTopicComponentEventManager.onListItemClick.bind(this));
     }
@@ -197,7 +200,7 @@ export default class SubTopicComponent extends React.Component {
                         data: data
                     });
 
-                    console.log(this.state);
+                    //console.log(this.state);
                 }
             }
         });
@@ -217,9 +220,11 @@ export default class SubTopicComponent extends React.Component {
             paramRep: {
                 id: 'sub_topic_id',
                 title: 'sub_topic_title',
+                description: 'sub_topic_description'
             },
             items: allSubTopics,
         };
+
 
         return payLoad;
 
@@ -230,6 +235,8 @@ export default class SubTopicComponent extends React.Component {
     }
 
     render() {
+        // console.log('render');
+        // console.log(this.state.data);
         let payLoad = this.prepareListCompnentPayload(this.state.data);
         return (
             <ListComponent

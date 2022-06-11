@@ -100,7 +100,7 @@ class SubTopicDisplayComponent extends React.Component {
 
     get description() {
         //fake data mapping
-        return this.details.subTopicDescription;
+        return this.props.locState.description;
     }
 
 

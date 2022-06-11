@@ -8,6 +8,7 @@ class ListItem extends React.Component {
         this.state = {
             id: props.itemId,
             title: props.title,
+            description: props.description
         };
         this.ref = React.createRef();
     }
@@ -19,6 +20,7 @@ class ListItem extends React.Component {
             cancelable: false,
             detail: { ...this.state },
         });
+        //console.log(this.state);
         listItem.dispatchEvent(event);
     }
 
@@ -52,11 +54,14 @@ export default class ListComponent extends React.Component {
 
     constructor(props) {
         super(props);
+        //console.log('listcomp subtopic');
+        //console.log(props.payLoad);
 
         /*{
             paramRep: {
                 id: 'itemId',
                 title: 'itemTitle',
+                description: 'description'
             },
             items: [
                 {
@@ -91,6 +96,10 @@ export default class ListComponent extends React.Component {
         return item[this.paramRep.title];
     }
 
+    getPayloadItemDescForItem(item) {
+        return item[this.paramRep.description];
+    }
+
     createListItemsComponents() {
         let listItemsComponents = [];
         let payLoadItems = this.payLoadItems;
@@ -98,7 +107,11 @@ export default class ListComponent extends React.Component {
             let itemId = this.getPayloadItemIdForItem(item);
             let title = this.getPayloadItemTitleForItem(item);
             listItemsComponents.push(
-                <ListItem itemId={itemId} title={title} key={itemId} />
+                <ListItem
+                    itemId={itemId}
+                    title={title}
+                    description={this.getPayloadItemDescForItem(item)}
+                    key={itemId} />
             );
         });
         return listItemsComponents;

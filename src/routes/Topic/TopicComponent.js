@@ -12,7 +12,7 @@ class TopicComponentEventManager {
     static onListItemClick(event) {
         event.stopPropagation();
         let topicId = event.target.getAttribute('id');
-        console.log(`topic id: ${event.detail.title}`);
+        //console.log(`topic id: ${topicId}`);
         this.props.nav({
             pathname: '/topic/subTopic',
             search: `?${createSearchParams({ topicId: topicId }).toString()}`,
