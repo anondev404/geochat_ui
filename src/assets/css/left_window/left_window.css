@@ -1,0 +1,12 @@
+.left-window {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    background-color: rgb(209, 220, 223);
+    border-color: rgb(150, 173, 160);
+    border-width: 3px;
+    border-style: solid;
+    position: relative;
+}

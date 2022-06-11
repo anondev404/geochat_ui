@@ -1,0 +1,19 @@
+.component-comment-card>.card {
+    background-color: #63e0d2;
+}
+
+.profile-picture img {
+    width: 40px;
+    height: 40px;
+}
+
+.comment-button {
+    cursor: pointer;
+}
+
+.like-button,
+.dislike-button {
+    display: flex;
+    cursor: pointer;
+    user-select: none;
+}

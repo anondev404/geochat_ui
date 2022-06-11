@@ -1,0 +1,16 @@
+/* w-75 position-absolute bottom-0 start-50 translate-middle*/
+
+.component-comment-input {
+    z-index: 10;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.component-comment-input paper-textarea {
+    width: 75%;
+}

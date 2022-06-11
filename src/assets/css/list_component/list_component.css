@@ -1,0 +1,25 @@
+.list-component {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.list-component>.list {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.list-component .card>.card-body {
+    width: 100%;
+    background-color: rgb(233, 247, 244);
+    cursor: pointer;
+}
+
+.list-component .card-body>p {
+    text-align: left;
+}

@@ -1,0 +1,11 @@
+.right-window {
+    width: inherit;
+    height: inherit;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
+    background-color: rgb(181, 247, 230);
+    border-color: rgb(84, 119, 106);
+    border-width: 3px;
+    border-style: solid;
+}
