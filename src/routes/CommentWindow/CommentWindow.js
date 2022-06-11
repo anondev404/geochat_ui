@@ -104,12 +104,12 @@ class CommentWindowComponent extends React.Component {
             console.log(serverRes);
 
             if (serverRes.isSubTopicExists) {
-                if (this.state.data.length === 0) {
-                    this.setState({
-                        data: this.format(data)
-                    });
-                    console.log(this.state);
-                }
+                this.setState({
+                    data: this.format(data)
+                });
+                console.log(this.state);
+
+                //setTimeout(this.fetchMetaDiscussion.bind(this), 2000);
             }
         });
 
@@ -138,7 +138,7 @@ class CommentWindowComponent extends React.Component {
                 <div className="comment-window" ref={this.commentWindowComponentRef}>
                     {this.getComments()}
                 </div>
-                <CommentInput />
+                <CommentInput subTopicId={this.state.subTopicId} />
             </>
         );
 
