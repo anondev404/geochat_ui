@@ -2,9 +2,9 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import 'assets/css/login/login.css';
+import '../../assets/css/login/login.css';
 
-import appLogo from 'assets/images/geo_chat.png';
+import appLogo from '../../assets/images/geo_chat.png';
 
 
 export default Login;

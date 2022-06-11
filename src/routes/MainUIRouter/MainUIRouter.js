@@ -3,14 +3,14 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import MainUI from 'routes/MainUI/MainUI.js';
+import MainUI from '../MainUI/MainUI.js';
 
-import SignIn from 'routes/SignIn/SignIn.js';
-import SignUp from 'routes/SignUp/SignUp.js';
+import SignIn from '../SignIn/SignIn.js';
+import SignUp from '../SignUp/SignUp.js';
 
-import Topic from 'routes/Topic/Topic.js';
-import SubTopic from 'routes/SubTopic/SubTopic.js';
-import SubTopicDisplay from 'routes/SubTopicDisplay/SubTopicDisplay.js';
+import Topic from '../Topic/Topic.js';
+import SubTopic from '../SubTopic/SubTopic.js';
+import SubTopicDisplay from '../SubTopicDisplay/SubTopicDisplay.js';
 
 
 export default function MainUIRouter() {

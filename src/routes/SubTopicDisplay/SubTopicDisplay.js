@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 
 import { useLocation, useSearchParams } from 'react-router-dom';
 
-import CommentWindow from 'routes/CommentWindow/CommentWindow.js'
+import CommentWindow from '../../routes/CommentWindow/CommentWindow.js'
 
-import 'assets/css/sub_topic_display/sub_topic_display.css';
+import '../../assets/css/sub_topic_display/sub_topic_display.css';
 
 class FakeData {
 

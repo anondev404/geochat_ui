@@ -2,7 +2,7 @@ import React from 'react';
 
 import '@polymer/paper-input/paper-textarea.js';
 
-import 'assets/css/comment_input/comment_input.css'
+import '../../assets/css/comment_input/comment_input.css'
 
 class CommentInputComponent extends React.Component {
 

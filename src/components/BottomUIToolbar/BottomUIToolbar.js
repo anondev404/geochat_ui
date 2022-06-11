@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useLocation } from 'react-router-dom';
 
-import 'assets/css/bottom_ui_toolbar/bottom_ui_toolbar.css';
+import '../../assets/css/bottom_ui_toolbar/bottom_ui_toolbar.css';
 
 class BottomUIToolbarComponent extends React.Component {
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { createSearchParams } from 'react-router-dom';
 
-import ListComponent from 'components/ListComponent/ListComponent.js';
+import ListComponent from '../../components/ListComponent/ListComponent.js';
 
 
 class FakeData {

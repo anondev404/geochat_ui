@@ -1,8 +1,8 @@
 import React from 'react';
 
-import 'assets/css/comment/comment_card.css';
+import '../../assets/css/comment/comment_card.css';
 
-import defProfilePic from 'assets/images/default_profile_image.png';
+import defProfilePic from '../../assets/images/default_profile_image.png';
 
 export default class CommentCard extends React.Component {
 

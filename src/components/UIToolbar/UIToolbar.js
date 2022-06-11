@@ -1,9 +1,9 @@
 import React from 'react';
 
-import 'assets/css/ui_toolbar/ui_toolbar.css';
+import '../../assets/css/ui_toolbar/ui_toolbar.css';
 
-import defProfilePic from 'assets/images/default_profile_image.png';
-import appLogo from 'assets/images/geo_chat.png';
+import defProfilePic from '../../assets/images/default_profile_image.png';
+import appLogo from '../../assets/images/geo_chat.png';
 
 export default class UIToolbar extends React.Component {
 

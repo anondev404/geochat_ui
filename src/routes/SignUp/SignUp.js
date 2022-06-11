@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import Login, { LoginRegex } from 'components/Login/Login.js'
+import Login, { LoginRegex } from '../../components/Login/Login.js'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

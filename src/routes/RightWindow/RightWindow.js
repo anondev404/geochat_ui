@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 
 import { useSearchParams } from 'react-router-dom';
 
-import 'assets/css/right_window/right_window.css';
-import 'assets/css/right_window_default_display/right_window_default_display.css';
+import '../../assets/css/right_window/right_window.css';
+import '../../assets/css/right_window_default_display/right_window_default_display.css';
 
 class RightWindowComponent extends React.Component {
 

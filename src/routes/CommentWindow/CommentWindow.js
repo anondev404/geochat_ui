@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-import CommentCard from 'components/CommentCard/CommentCard.js';
-import CommentInput from 'components/CommentInput/CommentInput.js';
+import CommentCard from '../../components/CommentCard/CommentCard.js';
+import CommentInput from '../../components/CommentInput/CommentInput.js';
 
-import 'assets/css/comment/comment_window.css';
+import '../../assets/css/comment/comment_window.css';
 
 
 class FakeData {

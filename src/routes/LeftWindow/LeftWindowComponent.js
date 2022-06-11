@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Outlet } from 'react-router-dom';
 
-import UIToolbar from 'components/UIToolbar/UIToolbar.js';
-import BottomUIToolbar from 'components/BottomUIToolbar/BottomUIToolbar';
+import UIToolbar from '../../components/UIToolbar/UIToolbar.js';
+import BottomUIToolbar from '../../components/BottomUIToolbar/BottomUIToolbar';
 
-import 'assets/css/left_window/left_window.css';
+import '../../assets/css/left_window/left_window.css';
 
 
 class LeftWindowEventManager {

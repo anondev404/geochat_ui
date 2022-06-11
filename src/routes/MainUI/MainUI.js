@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Outlet } from 'react-router-dom';
 
-import LeftWindow from 'routes/LeftWindow/LeftWindow';
-import RightWindow from 'routes/RightWindow/RightWindow';
+import LeftWindow from '../LeftWindow/LeftWindow';
+import RightWindow from '../RightWindow/RightWindow';
 
-import 'assets/css/main_ui/main_ui.css';
+import '../../assets/css/main_ui/main_ui.css';
 
 export default class MainUI extends React.Component {
 

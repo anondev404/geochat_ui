@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import Login, { LoginRegex } from 'components/Login/Login.js'
+import Login, { LoginRegex } from '../../components/Login/Login.js'
 import axios from 'axios';
 import serverConfig from './../../server/config/config';
 

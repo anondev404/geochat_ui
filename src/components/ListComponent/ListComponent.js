@@ -1,6 +1,6 @@
 import React from 'react';
 
-import 'assets/css/list_component/list_component.css';
+import '../../assets/css/list_component/list_component.css';
 
 class ListItem extends React.Component {
     constructor(props) {
