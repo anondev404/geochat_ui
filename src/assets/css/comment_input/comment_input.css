@@ -11,6 +11,6 @@
     align-items: center;
 }
 
-.component-comment-input paper-textarea {
+.component-comment-input paper-input {
     width: 75%;
 }

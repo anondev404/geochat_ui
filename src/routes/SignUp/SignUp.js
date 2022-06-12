@@ -50,7 +50,7 @@ class SignUpComponent extends React.Component {
             //TODO send user details to server
             //this.nav('/topic');
 
-            axios.post(`${serverConfig.url}/signUp`, {
+            axios.post(`signUp`, {
                 "username": username,
                 "password": password
             }).then((res) => {

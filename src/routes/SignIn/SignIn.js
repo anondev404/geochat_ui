@@ -42,39 +42,53 @@ class SignInComponent extends React.Component {
 
     onSubmitHandler(username, password) {
         console.log('signUp submit handler activated');
-        /*let regexMsg = this.regexValidator(username, password);
-        if (Boolean(regexMsg)) {
-            //TODO send toast here
-            console.log(regexMsg);
-        }*/
 
-        axios.post(`/signIn`, {
-            "username": username,
-            "password": password,
-            "location": {
-                "coordinate": {
-                    "lat": 22.3700471614417,
-                    "lon": 87.31945294244507
-                }
-            }
-        }, {
-            withCredentials: true
-        }).then((res) => {
+        const signInSuccess = (res) => {
             const data = res.data;
-
             toast(data.message);
-
             setTimeout(() => {
                 if (data.isSuccess) {
                     this.nav('/topic');
                 }
                 console.log(res);
             }, '2000');
+        };
 
+        const reqPayload = (coords) => {
+            console.log(coords);
+            return {
+                "username": username,
+                "password": password,
+                "location": {
+                    "coordinate": {
+                        "lat": coords.latitude,
+                        "lon": coords.longitude
+                    }
+                }
+            };
+        };
+
+        const geoLocationNotFound = (err) => { }
+
+        toast('Fetching Location...');
+
+        navigator.geolocation.getCurrentPosition((pos) => {
+            toast('Signing in...');
+
+            axios.post(`/signIn`,
+                reqPayload(pos.coords), {
+                withCredentials: true
+            }).then(signInSuccess).catch(err => {
+                toast(err.message);
+            });
+
+        }, geoLocationNotFound, {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
         });
-        /*
-        //TODO: remove nav redirection. nav is out beacuse of testing purposes
-        this.nav('/topic');*/
+
+
     }
 
     render() {

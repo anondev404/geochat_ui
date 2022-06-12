@@ -36,6 +36,11 @@ class CommentWindowComponent extends React.Component {
     constructor(props) {
         super(props);
         this.commentWindowComponentRef = React.createRef();
+
+        this.componentMount = React.createRef();
+
+        this.componentMount.current = { isUnMounted: false };
+
         [this.searchParams, this.setSearchParams] = props.searchParams;
 
         this.state = {
@@ -47,12 +52,15 @@ class CommentWindowComponent extends React.Component {
 
     componentDidMount() {
         console.log('mounting');
-
         this.fetchMetaDiscussion();
     }
 
     componentDidUpdate() {
         console.log('updating');
+    }
+
+    componentWillUnmount() {
+        this.componentMount.current.isUnMounted = true;
     }
 
     getCommentCard(commentJSON) {
@@ -64,13 +72,14 @@ class CommentWindowComponent extends React.Component {
                 likeCount={commentJSON.likes}
                 dislikeCount={commentJSON.dislikes}
                 key={commentJSON.commentId}
+                senderId={commentJSON.senderId}
             />);
         return commentCard;
     }
 
     format(data) {
         let commentInfo = [];
-        console.table([{ subTopicId: this.state.subTopicId }])
+        //console.table([{ subTopicId: this.state.subTopicId }])
         data.forEach(item => {
             commentInfo.push({
                 topicId: this.state.topicId,
@@ -79,7 +88,8 @@ class CommentWindowComponent extends React.Component {
                 likes: '0',
                 dislikes: '0',
                 comment: item.message,
-                commenter: 'solo_traveller',
+                commenter: 'loading...',
+                senderId: item.sender_id,
                 aReplyTo: null,
             });
         });
@@ -88,8 +98,10 @@ class CommentWindowComponent extends React.Component {
     }
 
     fetchMetaDiscussion() {
-        console.log('fetching...');
+        console.log(this.componentMount.current.isUnMounted);
+        if (this.componentMount.current.isUnMounted) return;
 
+        console.log('fetching...');
 
         axios.post(`/fetch/subTopicMetaDiscussion`, {
             "sub_topic_id": this.state.subTopicId
@@ -109,7 +121,7 @@ class CommentWindowComponent extends React.Component {
                 });
                 console.log(this.state);
 
-                //setTimeout(this.fetchMetaDiscussion.bind(this), 2000);
+                setTimeout(this.fetchMetaDiscussion.bind(this), 5000);
             }
         });
 

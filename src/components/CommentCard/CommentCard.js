@@ -1,8 +1,10 @@
+import axios from 'axios';
 import React from 'react';
 
 import '../../assets/css/comment/comment_card.css';
 
 import defProfilePic from '../../assets/images/default_profile_image.png';
+import { toast } from 'react-toastify';
 
 export default class CommentCard extends React.Component {
 
@@ -27,12 +29,35 @@ export default class CommentCard extends React.Component {
         };
     }
 
+    componentDidMount() {
+        this.fetchUsername();
+    }
+
+    async fetchUsername() {
+        const userId = this.props.senderId;
+        console.log('fetching username....')
+
+        if (userId) {
+            try {
+                const httpResponse = await axios.post('/fetch/username/id', {
+                    user_id: userId
+                });
+
+                if (httpResponse.data.isExists) {
+                    this.setState({ ...this.state, commenter: httpResponse.data.username });
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    }
+
     getCommentCardCol2() {
         //{this.getReactionRow()}
         return (
             <div className="col">
                 {this.getCommentWithUsernameRow()}
-                
+
             </div>
         );
     }
@@ -118,6 +143,7 @@ export default class CommentCard extends React.Component {
             </div>
         );
     }
+
 
     handleLike(event) {
         event.stopPropagation();

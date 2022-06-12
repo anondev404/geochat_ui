@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '@polymer/paper-input/paper-textarea.js';
+import '@polymer/paper-input/paper-input.js';
 
 import '../../assets/css/comment_input/comment_input.css'
 
@@ -26,7 +26,8 @@ class CommentInputComponent extends React.Component {
         event.stopPropagation();
 
         if (event.code === 'Enter') {
-            this.sendMetaDiscussion(event.target.value)
+            this.sendMetaDiscussion(event.target.value);
+            this.commentInputRef.current.updateValueAndPreserveCaret('');
         }
     }
 
@@ -48,12 +49,12 @@ class CommentInputComponent extends React.Component {
         });
     }
 
-
+    //<paper-textarea label="type comment here..." ></paper-textarea>
     render() {
         let commentInput = (
             <>
                 <div className="component-comment-input">
-                    <paper-textarea label="type comment here..." ref={this.commentInputRef}></paper-textarea>
+                    <paper-input label="type comment here..." ref={this.commentInputRef}></paper-input>
                 </div>
                 <ToastContainer
                     position="bottom-center"
