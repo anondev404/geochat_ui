@@ -43,14 +43,14 @@ class SignUpComponent extends React.Component {
 
     onSubmitHandler(username, password, confirmPassword) {
         console.log('signUp submit handler activated');
-        
+
         console.log([username, password, confirmPassword])
 
         if (password === confirmPassword) {
             //TODO send user details to server
             //this.nav('/topic');
 
-            axios.post(`signUp`, {
+            axios.post(`/signUp`, {
                 "username": username,
                 "password": password
             }).then((res) => {
@@ -60,11 +60,9 @@ class SignUpComponent extends React.Component {
 
                 setTimeout(() => {
                     if (data.isSuccess) {
-                        this.nav('/topic');
+                        this.props.nav('/');
                     }
-                    console.log(res);
-                }, '2000');
-
+                }, 2000);
             });
         } else {
             //TODO send toast here
